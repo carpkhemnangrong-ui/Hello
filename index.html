@@ -1,24 +1,4 @@
-drop table if exists registrations;
 
-create table registrations (
-  id bigint primary key generated always as identity,
-  first_name text not null,
-  last_name text not null,
-  nickname text,
-  student_id text not null unique,
-  major text not null,
-  created_at timestamptz default now()
-);
-
-alter table registrations enable row level security;
-
-create policy "allow read"
-on registrations for select
-using (true);
-
-create policy "allow insert"
-on registrations for insert
-with check (true);
 <!DOCTYPE html>
 <html lang="th">
 <head>
